@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/user/Documents/advrob/bayes_filter/bayesFilter.cpp
+iostream
+-
+vector
+-
+string.h
+-
+math.h
+/home/user/Documents/advrob/bayes_filter/math.h
+

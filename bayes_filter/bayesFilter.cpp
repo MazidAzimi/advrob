@@ -132,7 +132,7 @@ vector<double> bayesFilter( vector<double> preBelief, bool control, bool observa
         curBelief[k] = 0;
         for (int i = 0; i<num; i++){
         double motion_prob =  motionProb(i+1,k+1,control);
-        curBelief[k] +=  preBelief[k] * motion_prob;
+        curBelief[k] += preBelief[k] *  motion_prob;
         }
     }
 
@@ -145,10 +145,10 @@ vector<double> bayesFilter( vector<double> preBelief, bool control, bool observa
 
         }
         currBelief[k] = (1./normalizer)*obsProb(observation,k+1)*curBelief[k];
-
+    normalizer=0;
     }
 
-    return curBelief;
+    return currBelief;
 
 }
 
@@ -233,30 +233,30 @@ int main(int argc, char *argv[]) {
 	/* HINT: Look at Q5 Testing code */
     vector<double> curBelief1, curBelief2, curBelief3, curBelief4;
     curBelief1 = bayesFilter( initBelief, 0, 1);
-    curBelief2 = bayesFilter( initBelief, 1, 0);
-    curBelief3 = bayesFilter( initBelief, 1, 1);
-    curBelief4 = bayesFilter( initBelief, 1, 1);
+    curBelief2 = bayesFilter( curBelief1, 1, 0);
+    curBelief3 = bayesFilter( curBelief2, 1, 1);
+    curBelief4 = bayesFilter( curBelief3, 1, 1);
 
     cout << "************  Q6 **************************\n";
-    cout << "Updated probabilities of curBelief1: \n";
+    cout << "Updated probabilities of curBelief1(u=0,z=1): \n";
     printvector( curBelief1 );
     cout << endl;
 
-    cout << "Updated probabilities of curBelief2: \n";
+    cout << "Updated probabilities of curBelief2(u=0,z=1): \n";
     printvector( curBelief2 );
     cout << endl;
 
-    cout << "Updated probabilities of curBelief3: \n";
+    cout << "Updated probabilities of curBelief3(u=0,z=1): \n";
     printvector( curBelief3 );
     cout << endl;
 
-    cout << "Updated probabilities of curBelief4: \n";
+    cout << "Updated probabilities of curBelief4(u=0,z=1): \n";
     printvector( curBelief4 );
     cout << endl;
 
     double sum = 0;
 
-    for(int i; i<20; i++){
+    for(int i=0; i<20; i++){
         sum += curBelief1[i];
     }
     cout << sum<< endl;
